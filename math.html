@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Mathematics</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            .link{
+                display:inline;
+            }
+        </style>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><!--<img src="images/logo.svg" alt="" />--></span><span class="title">Christian Shadis</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="./index.html">Home</a></li>
+							<li><a href="./python.html">Python</a></li>
+							<li><a href="./java.html">Java</a></li>
+							<li><a href="./math.html">Mathematics</a></li>
+							<li><a href="./skills.html">Skills</a></li>
+							<li><a href="./education.html">Education</a></li>
+							<li><a href="./aah.html">Accomplishments</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Mathematics</h1>
+                            <span class="image main"><img src="images/pic13.jpg" alt="" /></span>
+                            
+                            <h3>The Stock Market: MA-303 Mathematical Modeling</h3>
+                            <a class="button" href="./original_project_ma303.pdf" target="_blank">See the Original Assignment</a>
+                            <br><br>
+                            <p>The objective of the project was to model the stock market using random variables in a stochastic model.</p>
+                            <p class="link">As a part of this project, we examined a few random tickers using </p><a href="https://raybb.github.io/random-stock-picker/" class="link" target="_blank">this tool.</a>
+                            <p>The random tickers selected were: </p>
+                            <ul>
+                                <li>AMTB: Amerant Bancorp, Inc.</li>
+                                <li>FRAK: VanEck Vectors Unconventional Oil & Gas ET</li>
+                                <li>REED: Reed's, Inc.</li>
+                                <li>SQQQ: ProShares UltraPro Short QQQ</li>
+                            </ul>
+
+                            <p>
+                                We used these stocks to calculate the average p-value to use in our simulations. Then, we wrote code to display these simulations on a line graph.
+                                For each ticker, we plotted fifteen simulations using our parameters for the model, and we also plotted the average of those simulations against real-world data. 
+                                We also examined Apple's stock, first running our simulations with Apple's true p-value, then by running the simulations with our derived p-value.
+                            </p>
+                            <p>The code below is written in Octave, similar to Matlab.</p>
+                            <pre>
+                                <code>
+pkg load statistics;
+
+data = xlsread("AAPL.xlsx");
+%data = xlsread("AMTB.xlsx");
+%data = xlsread("ANH.xlsx");
+%data = xlsread("FRAK.xlsx");
+%data = xlsread("REED.xlsx");
+%data = xlsread("SQQQ.xlsx");
+
+
+t = data(:,1); %time is first column of data
+price = data(:,5); % closing price is fifth column
+
+
+% Define parameters
+
+x0 = data(2,5); % closing price on day 1
+N = max(t)-1; % max time
+%p = .477; %AVERAGE OF RANDOM STOCK TICKER P'S
+p = .52988; %APPLE'S P-value
+% Make time vector
+n = 0:N;
+
+% Allocate space for x
+x = zeros(size(n));
+
+% Assign initial condition
+x(1)=x0;
+
+% Create for loop
+for j = 1:10 %how many repetitions?
+    for i = 1:N %simulate through entire time period
+        u = rand; %compared to p - between 0 and 1
+        a=(normrnd(x(i)*.02393,x(i)*.0308)); %price change is scaled by the current price
+        if (u < p)
+            x(i+1) = x(i)+a; %price increase
+        elseif (u >= p)
+            x(i+1) = x(i)-a; %price decrease
+        endif
+    end
+    alldata(j,:) = x;
+    % Plot x vs. n using a bold line 
+    figure(1)
+    plot(n,x,'linewidth',3)
+    hold on;
+    xlabel('n')
+    ylabel('x','rotation',0)
+end
+
+% Change the axis font size
+set(gca,'fontsize',18)
+plot(t,price,'x')
+hold off;
+
+figure(2)
+plot(t,price,'x')
+hold on;
+plot(n, mean(alldata), 'linewidth', 5)
+set(gca, 'fontsize', 18)
+xlabel('day')
+ylabel('x', 'rotation', 0)
+
+resid = price - x';
+sum(resid.^2)
+
+hold off;
+                                </code>
+                            </pre>
+                            <a class="button" href="./outputsstockmarket.html" target="_blank">See the Outputs</a>
+                            <br><br><hr><br>
+
+                            <h3>The Wassily-Leontief Model: MA-260 Linear Algebra</h3>
+                            <p><em>An application of linear algebra in economics</em></p>
+                            <a href="assets/leontiefpdf.pdf" target="_blank">My Work (PDF)</a>
+                            <br><br><br><br>
+                            <hr>
+                            <h3>Inductive Algebraic Proof: MA 240 Theory of Proof</h3>
+                            <a href="./inductive_proof.JPG" target="_blank">See Proof (JPG)</a>
+                            <br><br><br><br>
+                            <hr>
+                            <h3>Proof of Distributive Law (Set Theory): MA 240 Theory of Proof</h3>
+                            <a href="./sets_proof.JPG" target="_blank">See Proof (JPG)</a>
+
+                            <br><br><br><br>
+                            <hr>
+                            
+
+
+
+
+                        </div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							
+							<section>
+								<h2>Contact</h2>
+								<ul class="icons">
+									<li><a href="https://gitlab.com/cshadis" class="icon brands style2 fa-github" target="_blank"><span class="label">GitLab</span></a></li>
+									<li><a href="tel:774-200-1286" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="mailto:ctshadis@gmail.com" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

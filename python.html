@@ -1,0 +1,961 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Python</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            .collapsible {
+                background-color: #eee;
+                color: #444;
+                cursor: pointer;
+                padding-left: 18px;
+                width: 100%;
+                border: none;
+                text-align: left;
+                outline: none;
+                font-size: 15px;
+            }
+            .collapsible:after {
+                content: '\02795'; /* Unicode character for "plus" sign (+) */
+                font-size: 13px;
+                color: white;
+                float: right;
+                margin-left: 5px;
+            }
+
+                /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+            .active, .collapsible:hover {
+                background-color: #ccc;
+            }
+
+            .active:after {
+                content: "\2796"; /* Unicode character for "minus" sign (-) */
+            }
+                /* Style the collapsible content. Note: hidden by default */
+            .coll-content {
+                padding: 0 18px;
+                max-height: 0;
+                background-color: inherit;
+                
+                overflow: hidden;
+                transition: max-height 0.25s ease-in;
+                transition: max-height 0.25s ease-out;
+
+            }
+
+        </style>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><!--<img src="images/logo.svg" alt="" />--></span><span class="title">Christian Shadis</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+				<nav id="menu">
+					<h2>Menu</h2>
+					<ul>
+						<li><a href="./index.html">Home</a></li>
+						<li><a href="./python.html">Python</a></li>
+						<li><a href="./java.html">Java</a></li>
+						<li><a href="./math.html">Mathematics</a></li>
+						<li><a href="./skills.html">Skills</a></li>
+						<li><a href="./education.html">Education</a></li>
+						<li><a href="./aah.html">Accomplishments</a></li>
+					</ul>
+					
+					<div class="contact_menu">
+						<h6>Contact</h6>
+						<p style="font-size:small;margin-bottom: 0%;padding-bottom: 0%;margin-top:0%;padding-top: 0%;">Phone: +1 (774) 200-1286</p>
+						<p style="font-size:small;">Email: ctshadis@gmail.com</p>
+					</div>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Python</h1>
+
+							<hr>
+							
+                            <h3>CS-286 Final Project: Demographics Visualizer</h3>
+
+                            
+							<br>
+							<p>The goal of this project was to use mySQL and Python to analyze student data from the Computer Science Department of Worcester State. Below the code is a link to all outputs from the program.</p>
+
+							<button type="button" class="collapsible">main.py</button>
+							<div class="coll-content">
+								<pre>
+									<code>									
+		# Display graphs of Worcester State University's Computer Science Department's data from 2014-2019
+		# Authors: Christian Shadis, Jaymi-Lyn Souza
+		# CS-286 Database Design and Applications Final Project
+		import mysql.connector
+		import graphs
+		import queries
+
+		# Connect to SQL database
+		christian_password = "----------"
+		jaymi_password = "-----------"
+		christian_port = 3307
+		jaymi_port = 3306
+		db = mysql.connector.connect(
+		host="localhost",
+		port=christian_port,
+		# port=jaymi_port,
+		user="root",
+		password=christian_password,
+		# password=jaymi_password,
+		database="cs_282_finalproject"
+		)
+		choice = 0
+		def main_menu():
+		main_menu_choice=0
+		while main_menu_choice != 3:
+			print('------------------------------------------------')
+			print('1. View Graphical Representations')
+			print('2. View Numerical Representations')
+			print('3. Quit')
+			print('------------------------------------------------')
+			main_menu_choice = int(input("Enter your choice: "))
+			if(main_menu_choice > 0 and main_menu_choice < 4):
+				if main_menu_choice == 1:
+					graph_menu()
+				elif main_menu_choice == 2:
+					num_menu()
+				else:
+					print("Goodbye!")
+					return
+			else:
+				print("Oops! invalid choice, please try again")
+				main_menu()
+
+		def num_menu():
+		num_menu_choice=0
+		while num_menu_choice != 3:
+			print('------------------------------------------------')
+			print('1. Male vs Female Students (2014-2019)')
+			print('2. Breakdown by Race/Ethnicity (2014-2019)')
+			print('3. Back to Main Menu')
+			print('------------------------------------------------')
+			num_menu_choice = int(input("Enter your choice: "))
+			if (num_menu_choice > 0 and num_menu_choice < 4):
+				if num_menu_choice == 1:
+					queries.print_gender_numbers()
+
+				elif num_menu_choice == 2:
+					queries.print_race_numbers()
+
+				else:
+					return
+			else:
+				print("Oops! Invalid choice, please try again")
+				num_menu()
+
+		def graph_menu():
+		graph_menu_choice=0
+		while (graph_menu_choice != 8):
+			print('------------------------------------------------')
+			print('1. Line Graph: Gender of CS Students over time')
+			print('2. Pie Chart: Race of CS Students')
+			print('3. Pie Chart: Gender of CS Students')
+			print('4. Bar Graph: Share of CS Major Declarations by Sex')
+			print('5. Line Graph: African American CS Major Declarations by Year')
+			print('6. Bar Graph: African American CS Major Declarations by Sex')
+			print('7. Bar Graph: White men vs Black women in CS Major Declarations: ')
+			print('8. Return to Main Menu')
+			print('------------------------------------------------')
+			graph_menu_choice = int(input("Enter your choice: "))
+			if (graph_menu_choice>0 and graph_menu_choice < 9):
+				if graph_menu_choice == 1:
+					graphs.print_gender_line_chart(db)
+
+				if graph_menu_choice == 2:
+					graphs.print_race_pie_chart(db)
+
+				if graph_menu_choice == 3:
+					graphs.print_gender_pie_chart(db)
+
+				if graph_menu_choice == 4:
+					graphs.print_gender_shares_bar(db)
+
+				if graph_menu_choice == 5:
+					graphs.print_black_line_chart(db)
+
+				if graph_menu_choice == 6:
+					graphs.print_black_gender_bar(db)
+
+				if graph_menu_choice == 7:
+					graphs.print_black_women_white_men_bar(db)
+
+				if graph_menu_choice == 8:
+					return
+			else:
+				print("Oops! Invalid choice, please try again")
+				graph_menu()
+
+		#Program starts running here
+		main_menu()
+		exit()
+											
+									</code>
+								</pre>
+							</div>
+							<br>
+							<button type="button" class="collapsible">graphs.py</button>
+							<div class="coll-content">
+								<pre>
+									<code>									
+		# Display graphs of Worcester State University's Computer Science Department's data from 2014-2019
+		# Authors: Christian Shadis, Jaymi-Lyn Souza
+		# CS-286 Database Design and Applications Final Project
+		import matplotlib.pyplot as plt
+		import numpy as np
+
+		def print_race_pie_chart(db):
+		mycursor = db.cursor()
+		race_counts = []
+		for x in range(1, 12):# Run queries for each race
+			query = "SELECT COUNT(*) FROM student WHERE race=" + str(x)
+			mycursor.execute(query)
+			result = mycursor.fetchone()
+			race_counts.append(result[0])
+
+		# advised to consolidate indeces 1 and 7
+		race_counts[1] = race_counts[1] + race_counts[7]
+		# delete index 7
+		for i in range(8, 11):
+			race_counts[i - 1] = race_counts[i]
+		race_counts.pop()
+		# deleting index 3 - an index was skipped in the original data set
+		for i in range(4, 10):
+			race_counts[i - 1] = race_counts[i]
+		race_counts.pop()
+
+		legend_labels = ['Non-resident Alien', 'African American', 'American Indian or Alaskan Native',
+						'Hispanic or Latino', 'White', 'Unknown', 'Multiracial',
+						'Asian', 'Native Hawaiian or Pacific Islander']
+
+		total = 0# total number of students
+		for x in race_counts:
+			total = total + x
+
+		percentages = [(x / total) * 100 for x in race_counts]
+		explode = (0, 0.15, 0, 0, 0, 0, 0, 0, 0)  # emphasize African-American Representation
+		colors = ['#FFC0CB', '#9932CC', '#BFFF00', '#900D09', '#0288D1', '#3b4b21', '#00ffff', '#ff8b3d', '#000000']
+		# just some nice colors
+
+		ax1 = plt.subplot()
+		patches, texts = ax1.pie(percentages, labeldistance=1.3, colors=colors, explode=explode, shadow=True,
+									counterclock=False,
+									startangle=45)
+		ax1.axis('equal')
+		plt.legend(patches, ['%s, %1.1f %%' % (l, s) for l, s in zip(legend_labels, percentages)], loc = "center right", \
+					bbox_transform= plt.gcf().transFigure,
+					bbox_to_anchor=(1, 0.5), fontsize=10)
+
+		plt.subplots_adjust(left=0.0, bottom=0.1, right=0.45)
+		ax1.set_title("CS Dept Enrollment by Race,\n 2014-2019")
+		plt.show()
+
+		def print_gender_pie_chart(db):
+		mycursor = db.cursor() #instantiate cursor
+		mycursor.execute("SELECT COUNT(*) FROM student WHERE sex=2")#Select all women
+		queryresult = mycursor.fetchone()
+		women = queryresult[0]
+		mycursor.execute("SELECT COUNT(*) FROM student WHERE sex=1")#Select all men
+		queryresult = mycursor.fetchone()
+		men = queryresult[0]
+		labels = ['Men', 'Women']
+		percentages = [(men/(men+women))*100, (women/(men+women))*100]
+		explode = (0, 0.1)
+		ax1 = plt.subplot()
+		patches, texts, autotexts = ax1.pie(
+			percentages, 
+			labeldistance=1.1, 
+			colors=["#4B878BFF","#D01C1FFF"], 
+			explode=explode, 
+			shadow=True,
+			counterclock=False,
+			startangle=45,
+			labels=labels,
+			autopct='%1.0f%%',
+									)
+		ax1.axis('equal')
+
+		plt.subplots_adjust(left=0.0, bottom=0.1, right=0.45)
+
+		plt.show()
+
+		def print_gender_line_chart(db):
+		dbcursor = db.cursor()
+		# create variables to store men/women from 2014
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2014 AND sex=2")
+		women_14 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2014 AND sex=1")
+		men_14=(dbcursor.fetchone())[0]
+
+		# create variables to store men/women from 2015
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2015 AND sex=2")
+		women_15 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2015 AND sex=1")
+		men_15 = (dbcursor.fetchone())[0]
+
+		# create variables to store men/women from 2016
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2016 AND sex=2")
+		women_16 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2016 AND sex=1")
+		men_16 = (dbcursor.fetchone())[0]
+
+		# create variables to store men/women from 2017
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2017 AND sex=2")
+		women_17 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2017 AND sex=1")
+		men_17 = (dbcursor.fetchone())[0]
+
+		# create variables to store men/women from 2018
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2018 AND sex=2")
+		women_18 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2018 AND sex=1")
+		men_18 = (dbcursor.fetchone())[0]
+
+		# create variables to store men/women from 2019
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2019 AND sex=2")
+		women_19 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2019 AND sex=1")
+		men_19 = (dbcursor.fetchone())[0]
+
+		# create lists of values
+		men_counts_by_year=[men_14,men_15,men_16,men_17,men_18,men_19]
+		women_counts_by_year = [women_14, women_15, women_16, women_17, women_18, women_19]
+		years=[2014,2015,2016,2017,2018,2019]
+		ax1 = plt.subplot(1,1,1)
+		plt.plot(years, women_counts_by_year, marker="o", color="#DB5A42")
+		plt.plot(years, men_counts_by_year, marker="o", color="#3F3847")
+		plt.legend(labels=['Women', 'Men'],
+					loc=10,
+					shadow=True,
+					#facecolor="#4C5B61",
+					labelcolor=("#000000"))
+		plt.xlabel("Year")
+		plt.ylabel("Number of CS Major Declarations")
+		ax1.set_facecolor("#cecfc7")
+		ax1.set_xticks(years)
+		plt.show()
+
+		def print_gender_shares_bar(db):
+		dbcursor=db.cursor()
+		labels=[2014,2015,2016,2017,2018,2019]
+		def get_pct(sex, year):
+			queryinput = "SELECT COUNT(*) FROM student WHERE sex=1 AND academicYear=" + str(year)
+			dbcursor.execute(queryinput)
+			num_men = dbcursor.fetchone()[0]
+			queryinput = "SELECT COUNT(*) FROM student WHERE sex=2 AND academicYear=" + str(year)
+			dbcursor.execute(queryinput)
+			num_women = dbcursor.fetchone()[0]
+
+
+			total_people = num_women + num_men
+
+
+			if(sex==1):
+				return num_men / total_people
+			else:
+				return num_women/total_people
+
+
+		men_pcts=[get_pct(1, year) for year in labels]
+		men_pcts=[temp*100 for temp in men_pcts]
+		men_pcts=[round(temp,2) for temp in men_pcts]
+		women_pcts=[get_pct(2, year) for year in labels]
+		women_pcts=[temp*100 for temp in women_pcts]
+		women_pcts=[round(temp,2) for temp in women_pcts]
+
+		x=np.arange(len(labels))
+		width=0.35
+
+		fig1, ax1=plt.subplots()
+		men_rects=ax1.bar(x-width/2, men_pcts, width, label="Male", color="#3F3847")
+		women_rects=ax1.bar(x+width/2, women_pcts, width, label="Female", color="#DB5A42")
+
+		ax1.set_ylabel("Percent share")
+		ax1.set_xlabel("Year")
+		ax1.set_title("Share of enrollment by sex")
+		ax1.set_xticks(x)
+		ax1.set_xticklabels(labels)
+		ax1.set_facecolor("#cecfc7")
+
+		ax1.legend(loc='lower left', bbox_to_anchor= (0.0, 1.001))
+
+		plt.show()
+
+		def print_black_line_chart(db):
+		dbcursor = db.cursor()
+		#2014
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2014 AND race=2")
+		black_students_2014 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2014")
+		total_2014=(dbcursor.fetchone())[0]
+
+		# 2015
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2015 AND race=2")
+		black_students_2015 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2015")
+		total_2015 = (dbcursor.fetchone())[0]
+
+		# 2016
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2016 AND race=2")
+		black_students_2016 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2016")
+		total_2016 = (dbcursor.fetchone())[0]
+
+		# 2017
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2017 AND race=2")
+		black_students_2017 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2017")
+		total_2017 = (dbcursor.fetchone())[0]
+
+		# 2018
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2018 AND race=2")
+		black_students_2018 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2018")
+		total_2018 = (dbcursor.fetchone())[0]
+
+		# 2019
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2019 AND race=2")
+		black_students_2019 = (dbcursor.fetchone())[0]
+		dbcursor.execute("SELECT COUNT(*) FROM student WHERE academicYear=2019")
+		total_2019 = (dbcursor.fetchone())[0]
+
+		# create lists of values
+		black_student_counts_by_year = [
+										black_students_2014, 
+										black_students_2015, 
+										black_students_2016, 
+										black_students_2017, 
+										black_students_2018, 
+										black_students_2019
+										]
+		total_counts_by_year = [total_2014,total_2015,total_2016,total_2017, total_2018, total_2019]
+		black_percentage=[black/total for (black, total) in zip(black_student_counts_by_year, total_counts_by_year)]
+		black_percentage=[num*100 for num in black_percentage]#convert to %
+		black_percentage=[round(temp, 2) for temp in black_percentage]#round percentage
+
+		years = [2014, 2015, 2016, 2017, 2018, 2019]
+
+		ax1 = plt.subplot(1, 1, 1)
+
+		plt.plot(years, black_percentage, marker="o", color="#DB5A42")
+
+		plt.xlabel("Year")
+		plt.ylabel("Share of enrollment (%)")
+
+		ax1.set_facecolor("#cecfc7")
+		ax1.set_xticks(years)
+		ax1.set_title("Enrollment share of Black Students per year")
+
+		plt.show()
+
+		def print_black_gender_bar(db):
+		dbcursor = db.cursor()
+		labels = [2014, 2015, 2016, 2017, 2018, 2019]
+
+		def get_count(sex, year):
+			queryinput = "SELECT COUNT(*) FROM student WHERE sex=1 AND academicYear=" + str(year) + " AND race=2" #all black men
+			dbcursor.execute(queryinput)
+			num_men = dbcursor.fetchone()[0]
+			queryinput = "SELECT COUNT(*) FROM student WHERE sex=2 AND academicYear=" + str(year) + " AND race=2" #all black women
+			dbcursor.execute(queryinput)
+			num_women = dbcursor.fetchone()[0]
+
+
+
+			if(sex==1):
+				return num_men
+			else:
+				return num_women
+
+
+		men_counts = [get_count(1, year) for year in labels]
+		women_counts = [get_count(2, year) for year in labels]
+
+
+		x = np.arange(len(labels))
+		width = 0.35
+
+		fig1, ax1 = plt.subplots()
+		men_rects = ax1.bar(x - width / 2, men_counts, width, label="Male", color="#3F3847")
+		women_rects = ax1.bar(x + width / 2, women_counts, width, label="Female", color="#DB5A42")
+
+		ax1.set_ylabel("Students")
+		ax1.set_xlabel("Year")
+		ax1.set_title("Number of African American Students by Sex")
+		ax1.set_xticks(x)
+		ax1.set_xticklabels(labels)
+		ax1.set_facecolor("#cecfc7")
+
+		ax1.legend(loc='upper left')
+
+		def autolabel(rects, color):
+			"""
+			Attach a text label above each bar displaying its height
+			"""
+			for rect in rects:
+				height = rect.get_height()
+				ax1.text(rect.get_x() + rect.get_width() / 2., .005 + height,
+						'%d' % int(height),
+						ha='center', va='bottom',
+						color=color)
+
+		autolabel(men_rects, "#3F3847")
+		autolabel(women_rects, "#DB5A42")
+
+		plt.show()
+
+		def print_black_women_white_men_bar(db):
+		dbcursor = db.cursor()
+		labels = [2014, 2015, 2016, 2017, 2018, 2019]
+
+		def get_count(sex, year):
+			queryinput = "SELECT COUNT(*) FROM student WHERE sex=1 AND academicYear=" + str(
+				year) + " AND race=6"  # all white men
+			dbcursor.execute(queryinput)
+			num_men = dbcursor.fetchone()[0]
+			queryinput = "SELECT COUNT(*) FROM student WHERE sex=2 AND academicYear=" + str(
+				year) + " AND race=2"  # all black women
+			dbcursor.execute(queryinput)
+			num_women = dbcursor.fetchone()[0]
+
+
+			if (sex == 1):
+				return num_men
+			else:
+				return num_women
+
+
+		men_counts = [get_count(1, year) for year in labels]
+		women_counts = [get_count(2, year) for year in labels]
+
+		x = np.arange(len(labels))
+		width = 0.35
+
+		fig1, ax1 = plt.subplots()
+		men_rects = ax1.bar(x - width / 2, men_counts, width, label="Male", color="#3F3847")
+		women_rects = ax1.bar(x + width / 2, women_counts, width, label="Female", color="#DB5A42")
+
+		ax1.set_ylabel("Students")
+		ax1.set_xlabel("Year")
+		ax1.set_title("White Men \nvs Black Women")
+		ax1.set_xticks(x)
+		ax1.set_xticklabels(labels)
+		ax1.set_facecolor("#cecfc7")
+
+		ax1.legend(loc='lower left', labels=['White Men', 'Black Women'], bbox_to_anchor=(0.0, 1.001))
+
+		def autolabel(rects, color):
+			"""
+			Attach a text label above each bar displaying its height
+			"""
+			for rect in rects:
+				height = rect.get_height()
+				ax1.text(rect.get_x() + rect.get_width() / 2., .005 + height,
+							'%d' % int(height),
+							ha='center', va='bottom',
+							color=color)
+
+		autolabel(men_rects, "#3F3847")
+		autolabel(women_rects, "#DB5A42")
+
+		plt.show()
+											
+									</code>
+								</pre>
+							</div>
+							<br>
+
+							<button type="button" class="collapsible">queries.py</button>
+							<div class="coll-content">
+								<pre>
+									<code>								
+		# Display graphs of Worcester State University's Computer Science Department's data from 2014-2019
+		# Authors: Christian Shadis, Jaymi-Lyn Souza
+		# CS-286 Database Design and Applications Final Project
+		import pandas as pd
+		from sqlalchemy import create_engine
+		import pymysql
+
+		christian_password="---------"
+		christian_port="3307"
+		jaymi_password="---------------"
+		jaymi_port="3306"
+
+		#IMPORTS MYSQL TABLE INTO PANDAS
+
+		db_connection_str = "mysql+pymysql://root:"+christian_password+"@127.0.0.1:"+christian_port+"/cs_282_finalproject"
+		# db_connection_str = "mysql+pymysql://root:"+jaymi_password+"@127.0.0.1:"+jaymi_port+"/cs_282_finalproject"
+		db_connection = create_engine(db_connection_str)
+		df = pd.read_sql('SELECT * FROM STUDENT', con=db_connection)
+
+		# .value_counts() parses the data and counts up the frequency of values in the specified column
+		# .loc[] chooses just one of the occurrences
+		def print_gender_numbers():
+		gender_numbers = df['sex'].value_counts()
+		male = str(gender_numbers.loc[1])
+		female = str(gender_numbers.loc[2])
+		print ('The total number of CS students of each gender from 2014-2019 is: \n Male: ' + male + ' \n Female: ' + female)
+
+		#there are 0 instances of some of the cases, which is why they are commented out
+		def print_race_numbers():
+		race_numbers = df['race'].value_counts()
+		nra = str(race_numbers.loc[1])
+		black = str(race_numbers.loc[2])
+		# indigenous = str(race_numbers.loc[3])
+		hispanic_latino = str(race_numbers.loc[5])
+		white = str(race_numbers.loc[6])
+		unknown = str(race_numbers.loc[7])
+		multiple = str(race_numbers.loc[9])
+		asian = str(race_numbers.loc[10])
+		# native_hawaiian = str(race_numbers.loc[11])
+
+		print('The total number of CS students of each race from 2014-2019 is: \nWhite: ' + white)
+		print("Black: " + black)
+		print('Hispanic/Latinx: ' + hispanic_latino)
+		# print('American Indian or Alaskan Native: ' + indigenous)
+		print('Asian: ' + asian)
+		#  print('Native Hawaiian or other Pacific Islander: ' + native_hawaiian)
+		print('Multiple races/ethnicities: \t' + multiple)
+		print('Unknown: ' + unknown)
+		print('Non-Resident Alien: ' + nra)
+									</code>
+								</pre>
+							</div>
+							<br>
+							<h6>Project Details</h6>
+							<ul>
+								<li>Multilevel interactive text-based user menu</li>
+								<li>MySQL database connection</li>
+								<li>List Comprehension</li>
+								<li>Matplotlib</li>
+								<li>Pandas</li>
+								<li>Loops, Conditionals</li>
+							</ul>
+							<a type="button" class="button" href="./outputs.html" target="_blank" style="background-color: #ffffff;">See the Outputs</a>
+                            
+
+                                
+
+							<hr>
+                            
+                            <h3>CS-135 Final Project: Command-Line Tax Calculator</h3>
+                            
+
+							<button type="button" class="collapsible">main.py</button>
+							<div class="coll-content">
+								<pre>
+									<code>
+		#Christian Shadis
+		#Final Project - due 12/18/2018
+		#Computes figures pertaining to a user's tax information based on 2017 data
+		
+		filing_choice = 0
+		while filing_choice != 5:
+			#Menu
+			print('**************************')
+			print('To get started, are you...')
+			print('1. Single')
+			print('2. Married, filing jointly')
+			print('3. Head of Household')
+			print('4. Married, filing seperately')
+			print('5. Quit the program')
+			print('**************************')
+			print()
+			
+			#user input for menu
+			filing_choice = int(input('Enter your choice: '))
+			
+			#prevents invalid entry
+			if filing_choice > 5:
+				filing_choice = int(input('Please enter a valid selection: '))
+		
+			#single calculation
+			if filing_choice == 1:
+				print()
+				print('You selected: Filing Single')
+				taxable_income = float(input('Please enter your gross pay for the year: '))
+				if taxable_income < 9325:
+					tax_amount = taxable_income / 10
+					tax_rate = '10%'
+					tax_method = '10% of the excess over $0'
+				elif taxable_income < 37950:
+					tax_amount = 932.50 + ((taxable_income - 9325)*0.15)
+					tax_rate= '15%'
+					tax_method = '$932.50 plus 15% of the excess over $9,325'
+				elif taxable_income < 91900:
+					tax_amount = 5226.25 + ((taxable_income - 37950)/4)
+					tax_rate = '25%'
+					tax_method = '$5,226.50 plus 25% of the excess over $37,950'
+				elif taxable_income < 190650:
+					tax_amount = 18713.75 + (.28 * (taxable_income - 91900))
+					tax_rate = '28%'
+					tax_method = '$18,713.75 plus 28% of the excess over $91,900'
+				elif taxable_income < 416700:
+					tax_amount = 46643.75 + (.33 * (taxable_income - 191650)) #seems like a mistake - should be 190650, but the website says 191650
+					tax_rate = '33%'
+					tax_method = '$46,643.75 plus 33% of the excess over $191,650'
+				elif taxable_income < 418400:
+					tax_amount = 120910.25 + (.35 * (taxable_income - 416700))
+					tax_rate = '35%'
+					tax_method = '$120,910.25 plus 35% of the excess over $416,700'
+				else:
+					tax_amount = 121505.25 + (.396 * (taxable_income - 418400))
+					tax_rate = '39.6%'
+					tax_method = '$121,505.25 plus 39.6% of the excess over $418,400'
+					
+			#Married, jointly calculation
+					
+			if filing_choice == 2:
+				print()
+				print('You selected: Married, Filing Jointly')
+				taxable_income = float(input('Please enter your gross pay for the year: '))
+				if taxable_income < 18650:
+					tax_amount = taxable_income / 10
+					tax_rate = '10%'
+					tax_method = '10% of the excess over $0'
+				elif taxable_income < 75900:
+					tax_amount = 1855 + ((taxable_income - 18550)*0.15)
+					tax_rate= '15%'
+					tax_method = '$1,855 plus 15% of the excess over $18,550'
+				elif taxable_income < 153100:
+					tax_amount = 10368 + ((taxable_income - 75300)/4)
+					tax_rate = '25%'
+					tax_method = '$10,368 plus 25% of the excess over $75,300'
+				elif taxable_income < 233350:
+					tax_amount = 29518 + (.28 * (taxable_income - 151900))
+					tax_rate = '28%'
+					tax_method = '$29,518 plus 28% of the excess over $151,900'
+				elif taxable_income < 416700:
+					tax_amount = 51792 + (.33 * (taxable_income - 231450)) 
+					tax_rate = '33%'
+					tax_method = '$51,792 plus 33% of the excess over $231,450'
+				elif taxable_income < 470700:
+					tax_amount = 111819 + (.35 * (taxable_income - 413350))
+					tax_rate = '35%'
+					tax_method = '$111,819 plus 35% of the excess over $413,350'
+				else:
+					tax_amount = 130579 + (.396 * (taxable_income - 466950))
+					tax_rate = '39.6%'
+					tax_method = '$130,579 plus 39.6% of the excess over $466,950'
+					
+			#Head of Household Calculation
+		
+			if filing_choice == 3:
+				print()
+				print('You selected: Head of Household')
+				taxable_income = float(input('Please enter your gross pay for the year: '))
+				if taxable_income < 13350:
+					tax_amount = taxable_income / 10
+					tax_rate = '10%'
+					tax_method = '10% of the excess over $0'
+				elif taxable_income < 50800:
+					tax_amount = 1335 + ((taxable_income - 13350)*0.15)
+					tax_rate= '15%'
+					tax_method = '$1,335 plus 15% of the excess over $13,350'
+				elif taxable_income < 131200:
+					tax_amount = 6952.50 + ((taxable_income - 50800)/4)
+					tax_rate = '25%'
+					tax_method = '$6,952.50 plus 25% of the excess over $50,800'
+				elif taxable_income < 212500:
+					tax_amount = 27052.50 + (.28 * (taxable_income - 131200))
+					tax_rate = '28%'
+					tax_method = '$27,052.50 plus 28% of the excess over $131,200'
+				elif taxable_income < 416700:
+					tax_amount = 49816.50 + (.33 * (taxable_income - 212500)) 
+					tax_rate = '33%'
+					tax_method = '$49,816.50 plus 33% of the excess over $212,500'
+				elif taxable_income < 444500:
+					tax_amount = 117202.50 + (.35 * (taxable_income - 416701))
+					tax_rate = '35%'
+					tax_method = '$117,202.50 plus 35% of the excess over $413,350'
+				else:
+					tax_amount = 126950 + (.396 * (taxable_income - 444550))
+					tax_rate = '39.6%'
+					tax_method = '$126,950 plus 39.6% of the excess over $444,550'
+		
+				#Married, Filing Seperately Calculation
+			if filing_choice == 4:
+				print()
+				print('You selected: Married, Filing Seperately')
+				taxable_income = float(input('Please enter your gross pay for the year: '))
+				if taxable_income < 9325:
+					tax_amount = taxable_income / 10
+					tax_rate = '10%'
+					tax_method = '10% of the excess over $0'
+				elif taxable_income < 37950:
+					tax_amount = 932.50 + ((taxable_income - 9325)*0.15)
+					tax_rate= '15%'
+					tax_method = '$932.50 plus 15% of the excess over $9,325'
+				elif taxable_income < 76550:
+					tax_amount = 5226.25 + ((taxable_income - 37950)/4)
+					tax_rate = '25%'
+					tax_method = '$5,226.25 plus 25% of the excess over $37,950'
+				elif taxable_income < 116675:
+					tax_amount = 14876.25 + (.28 * (taxable_income - 76550))
+					tax_rate = '28%'
+					tax_method = '$14,876.25 plus 28% of the excess over $76,550'
+				elif taxable_income < 208350:
+					tax_amount = 26111.25 + (.33 * (taxable_income - 116675)) 
+					tax_rate = '33%'
+					tax_method = '$26,111.25 plus 33% of the excess over $116,675'
+				elif taxable_income < 235350:
+					tax_amount = 56364 + (.35 * (taxable_income - 208350))
+					tax_rate = '35%'
+					tax_method = '$56,364 plus 35% of the excess over $208,350'
+				else:
+					tax_amount = 65814 + (.396 * (taxable_income - 235350))
+					tax_rate = '39.6%'
+					tax_method = '$65,814 plus 39.6% of the excess over $235,350'
+		
+			#inner menu
+			if filing_choice != 5:
+				inner_menu_choice = 0
+				print('_____________________________')
+				print('What would you like to know?')
+				print('1. Tax Rate')
+				print('2. The method to calculate your taxes')
+				print('3. Your total tax responsibility')
+				print('4. Your net income')
+				print('5. All of the Above')
+				print('_____________________________')
+				print()
+				print()
+				inner_menu_choice = int(input('Enter your choice here: '))
+				if inner_menu_choice == 1:
+					print('Your tax rate is: %s' %(tax_rate))
+					print('---------------------------------------------------')
+				elif inner_menu_choice == 2:
+					print('Your tax rate is calculated as follows: %s' %(tax_method))
+					print('---------------------------------------------------')
+				elif inner_menu_choice == 3:
+					print('Your total tax responsibility is as follows: $%.2f' %(tax_amount))
+					print('---------------------------------------------------')
+				elif inner_menu_choice == 4:
+					net_income = taxable_income - tax_amount
+					print('Your net income is: $%.2f' %(net_income))
+					print('---------------------------------------------------')
+				elif inner_menu_choice == 5:
+					net_income = taxable_income - tax_amount
+					print()
+					print('Your tax rate is: %s' %(tax_rate))
+					print('Your tax rate is calculated as follows: %s' %(tax_method))
+					print('Your total tax responsibility is as follows: $%.2f' %(tax_amount))
+					print('Your net income is: $%.2f' %(net_income))
+					print('---------------------------------------------------')
+				else:
+					inner_menu_choice = int(input('Please enter a valid option: '))
+												
+										
+									</code>
+								</pre>
+							</div>
+							<br>
+							<h6>Project Details</h6>
+							<ul>
+								<li>Interactive text-based user menu</li>
+								<li>Conditional Statements</li>
+								<li>Control Flow</li>
+								<li>Arithmetic Functions</li>
+							</ul>
+
+
+
+						</div>
+                            
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							
+							<section>
+								<h2>Contact</h2>
+								<ul class="icons">
+									<li><a href="https://gitlab.com/cshadis" class="icon brands style2 fa-github" target="_blank"><span class="label">GitLab</span></a></li>
+									<li><a href="tel:774-200-1286" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="mailto:ctshadis@gmail.com" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+            <!-- <script>
+                var coll = document.getElementsByClassName("collapsible");
+                var i;
+
+                for (i = 0; i < coll.length; i++) {
+                    coll[i].addEventListener("click", function() {
+                        this.classList.toggle("active");
+                        var content = this.nextElementSibling;
+                        if (content.style.display === "block") {
+                            content.style.display = "none";
+                        } else {
+                            content.style.display = "block";
+                        }
+                    });
+                }
+            </script> -->
+            <script>
+                var coll = document.getElementsByClassName("collapsible");
+                var i;
+
+                for (i = 0; i < coll.length; i++) {
+                    coll[i].addEventListener("click", function() {
+                        this.classList.toggle("active");
+                        var content = this.nextElementSibling;
+                        if (content.style.maxHeight) {
+                            content.style.maxHeight = null;
+                        } else {
+                            content.style.maxHeight = content.scrollHeight + "px";
+                        }
+                    });
+                }
+            </script>
+
+	</body>
+</html>

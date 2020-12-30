@@ -1,0 +1,66 @@
+pkg load statistics;
+
+data = xlsread("AAPL.xlsx");
+%data = xlsread("AMTB.xlsx");
+%data = xlsread("ANH.xlsx");
+%data = xlsread("FRAK.xlsx");
+%data = xlsread("REED.xlsx");
+%data = xlsread("SQQQ.xlsx");
+
+
+t = data(:,1); %time is first column of data
+price = data(:,5); % closing price is fifth column
+
+
+% Define parameters
+
+x0 = data(2,5); % closing price on day 1
+N = max(t)-1; % max time
+%p = .477; %AVERAGE OF RANDOM STOCK TICKER P'S
+p = .52988; %APPLE'S P-value
+% Make time vector
+n = 0:N;
+
+% Allocate space for x
+x = zeros(size(n));
+
+% Assign initial condition
+x(1)=x0;
+
+% Create for loop
+for j = 1:10 %how many repetitions?
+    for i = 1:N %simulate through entire time period
+        u = rand; %compared to p - between 0 and 1
+        a=(normrnd(x(i)*.02393,x(i)*.0308)); %price change is scaled by the current price
+        if (u < p)
+            x(i+1) = x(i)+a; %price increase
+        elseif (u >= p)
+            x(i+1) = x(i)-a; %price decrease
+        endif
+    end
+    alldata(j,:) = x;
+    % Plot x vs. n using a bold line 
+    figure(1)
+    plot(n,x,'linewidth',3)
+    hold on;
+    xlabel('n')
+    ylabel('x','rotation',0)
+end
+
+% Change the axis font size
+set(gca,'fontsize',18)
+plot(t,price,'x')
+hold off;
+
+figure(2)
+plot(t,price,'x')
+hold on;
+plot(n, mean(alldata), 'linewidth', 5)
+set(gca, 'fontsize', 18)
+xlabel('day')
+ylabel('x', 'rotation', 0)
+
+resid = price - x';
+sum(resid.^2)
+
+hold off;

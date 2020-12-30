@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Project Outputs</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+
+            #gender_pie_chart{
+                height:75%;
+                width:75%;
+            }
+
+            .smooth-image{
+				z-index: 2;
+				border-radius: 25px;
+				cursor: pointer;
+				transition: 0.3s;
+				
+			}
+
+			.smooth-image:hover{
+				opacity: 0.7;
+			}
+            .modal{
+				display:none;
+				position:fixed;
+				z-index:1;
+				padding-top: 100px;
+				padding-bottom: 100px;
+				left:0;
+				top:0;
+				width: 100%;
+				height: 100%;
+				overflow:auto;
+
+				background-color: rgb(0,0,0);
+				background-color: rgba(0,0,0,0.9);
+			}
+
+			.modal-content{
+				margin: auto;
+				display:block;
+				width: 100%;
+				max-width: 700px;
+				-webkit-animation-name: zoom;
+				-webkit-animation-duration: 0.6s;
+				animation-name: zoom;
+				animation-duration: 0.6s;
+				
+			}
+
+			.close {
+				color: #aaa;
+				position:fixed;
+				font-size: 48px;
+				font-weight: bold;
+			}
+
+			.close:hover,
+			.close:focus {
+				color: black;
+				text-decoration: none;
+				cursor: pointer;
+			}
+
+			.caption{
+				margin: auto;
+				display: block;
+				width: 80%;
+				max-width: 700px;
+				text-align: center;
+				font-weight: bolder;
+				color: white;
+				padding: 10px;
+				height: 150px;
+		
+			}
+			/* Add Animation - Zoom in the Modal */
+			
+			@-webkit-keyframes zoom {
+				from {-webkit-transform:scale(0)}
+				to {-webkit-transform:scale(1)}
+			}
+
+			@keyframes zoom {
+				from {transform:scale(0)}
+				to {transform:scale(1)}
+			}
+
+			/* 100% Image Width on Smaller Screens */
+			@media only screen and (max-width: 700px){
+				.modal-content {
+					width: 100%;
+				}
+			}
+        </style>
+    </head>
+    <body class="is-preload">
+        <!-- Wrapper -->
+            <div id="wrapper">
+
+                <!-- Header -->
+                    <header id="header">
+                        <div class="inner">
+
+                            <!-- Logo -->
+                                <a href="index.html" class="logo">
+                                    <span class="symbol"><!--<img src="images/logo.svg" alt="" />--></span><span class="title">Christian Shadis</span>
+                                </a>
+
+                            <!-- Nav -->
+                                <nav>
+                                    <ul>
+                                        <li><a href="#menu">Menu</a></li>
+                                    </ul>
+                                </nav>
+
+                        </div>
+                    </header>
+
+                <!-- Menu -->
+                    <nav id="menu">
+                        <h2>Menu</h2>
+                        <ul>
+                            <li><a href="./index.html">Home</a></li>
+							<li><a href="./python.html">Python</a></li>
+							<li><a href="./java.html">Java</a></li>
+							<li><a href="./math.html">Mathematics</a></li>
+							<li><a href="./skills.html">Skills</a></li>
+							<li><a href="./education.html">Education</a></li>
+							<li><a href="./aah.html">Accomplishments</a></li>
+                        </ul>
+                    </nav>
+
+                <!-- Main -->
+                    <div id="main">
+                        <div class="inner">
+                            <header>
+                                <h1>Demographics Project Outputs</h1>
+                            </header>
+
+                            
+                            <div class="container">
+
+    
+                                <div class="row">
+                                    <div class="col-4 col-12-mobile">
+                                        <article class="item">
+                                            <a class="image fit"><img class="smooth-image" src="images/by_race.jpg" id="by_race" /></a>
+                                            <div class="modal" id="myModal">
+                                                <span class="close">&times;</span>
+                                                <img id="modal-image" class="modal-content">
+                                            </div>
+    
+                                            
+                                        </article>
+    
+                                        <article class="item">
+                                            <a class="image fit"><img class="smooth-image" src="images/gender_line_graph.jpg" id="white_men_black_women_bar_graph" alt="merry bright"/></a>
+                                            <div class="modal" id="myModal">
+                                                <span class="close">&times;</span>
+                                                <img id="modal-image" class="modal-content">
+                                                <!-- <div class = "caption" id="caption_merry_bright_xmas">Merry Bright Christmas!</div> -->
+                                            </div>
+                                            
+                                                                                
+                                        </article>
+
+                                        <article class="item">
+                                            <a class="image fit"><img class="smooth-image" src="images/gender_pie_chart.jpg" id="gender_pie_chart" alt="merry bright"/></a>
+                                            <div class="modal" id="myModal">
+                                                <span class="close">&times;</span>
+                                                <img id="modal-image" class="modal-content">
+                                                <!-- <div class = "caption" id="caption_merry_bright_xmas">Merry Bright Christmas!</div> -->
+                                            </div>
+                                            
+                                                                                
+                                        </article>
+
+    
+                                    </div>   
+
+                                    <div class="col-4 col-12-mobile">
+                                        <article class="item">
+                                            <a class="image fit"><img class="smooth-image" src="images/gender_bar_graph.jpg" id="text" /></a>
+                                            <div class="modal" id="myModal">
+                                                <span class="close">&times;</span>
+                                                <img id="modal-image" class="modal-content">
+                                            </div>
+    
+                                            
+                                        </article>
+    
+                                        <article class="item">
+                                            <a class="image fit"><img class="smooth-image" src="images/black_line_chart.jpg" id="gender_bar_graph" alt="gender bar graph"/></a>
+                                            <div class="modal" id="myModal">
+                                                <span class="close">&times;</span>
+                                                <img id="modal-image" class="modal-content">
+                                                <!-- <div class = "caption" id="caption_merry_bright_xmas">Merry Bright Christmas!</div> -->
+                                            </div>
+                                            
+                                                                                
+                                        </article>
+
+                                        <article class="item">
+                                            <a class="image fit"><img class="smooth-image" src="images/black_by_sex_bar_graph.jpg" id="black_by_sex_bar_graph" alt="black_by_sex_bar_graph"/></a>
+                                            <div class="modal" id="myModal">
+                                                <span class="close">&times;</span>
+                                                <img id="modal-image" class="modal-content">
+                                                <!-- <div class = "caption" id="caption_merry_bright_xmas">Merry Bright Christmas!</div> -->
+                                            </div>
+                                            
+                                                                                
+                                        </article>
+
+    
+                                    </div>  
+
+                                    <div class="col-4 col-12-mobile">
+                                        <article class="item">
+                                            <a class="image fit"><img class="smooth-image" src="images/text_output.jpg" id="text_output" /></a>
+                                            <div class="modal" id="myModal">
+                                                <span class="close">&times;</span>
+                                                <img id="modal-image" class="modal-content">
+                                            </div>
+    
+                                            
+                                        </article>
+    
+                                        <article class="item">
+                                            <a class="image fit"><img class="smooth-image" src="images/white_men_black_women_bar_graph.jpg" id="white_men_black_women_bar_graphalt="white men black women bar graph"/></a>
+                                            <div class="modal" id="myModal">
+                                                <span class="close">&times;</span>
+                                                <img id="modal-image" class="modal-content">
+                                                <!-- <div class = "caption" id="caption_merry_bright_xmas">Merry Bright Christmas!</div> -->
+                                            </div>
+                                            
+                                                                                
+                                        </article>
+
+
+    
+                                    </div>  
+
+
+                        </div>
+                    </div>
+
+                <!-- Footer -->
+                    <footer id="footer">
+                        <div class="inner">
+                            <ul class="copyright">
+                                <li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                            </ul>
+                        </div>
+                    </footer>
+
+            </div>
+
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/browser.min.js"></script>
+            <script src="assets/js/breakpoints.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+            <script>
+				var modal = document.getElementById("myModal");
+				var i;
+
+				var img = document.getElementsByClassName("smooth-image");
+				var modalImg = document.getElementById("modal-image");
+
+				for(i=0;i< img.length;i++)
+				{    
+					img[i].onclick = function(){
+
+						modal.style.display = "block";
+						
+						modalImg.src = this.src;
+
+					}
+				}
+
+				var span = document.getElementsByClassName("close")[0];
+
+
+				span.onclick = function() { 
+				modal.style.display = "none";
+				}
+				window.onclick = function(event) {
+					if (event.target == modal) {
+						modal.style.display = "none";
+					}
+				}
+			</script>
+
+    </body>
+</html>
