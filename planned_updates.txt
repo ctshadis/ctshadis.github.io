@@ -13,3 +13,25 @@
 
 - Add goals???
 
+
+
+Python:
+ - Summer tutoring
+ - Codecademy
+
+
+Java:
+ - some app code
+
+
+R:
+ - fellowship
+ - Data Analysis final project
+ - 
+
+
+Math:
+ - real analysis final project
+ - capstone
+ - modeling final project
+ - couple proofs
