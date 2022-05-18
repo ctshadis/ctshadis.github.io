@@ -57,7 +57,7 @@ header {
 }
 
 .square {
-  border: 2px solid rgb(58, 58, 60);
+  border: 2px solid rgb(90, 90, 90);
   min-width: 60px;
   min-height: 60px;
   font-size: 50px;
@@ -97,6 +97,8 @@ header {
   border-radius: 4px;
   user-select: none;
 }
+
+
 
 .keyboard-row button.wide-button {
   flex-grow: 1.5;

@@ -27,11 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then((res) => {
         word = res.word;
+        word = "sassy";
       
       })
       .catch((err) => {
         console.error(err);
       });
+
       
   }
 
@@ -98,15 +100,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const letterId = firstLetterId + index;
             const letterEl = document.getElementById(letterId);
+            const querytext = '[data-key=' + letter;
+            const key = document.querySelector(querytext);
             letterEl.classList.add("animate__flipInX");
             letterEl.style = `background-color:${tileColor};border-color:${tileColor}`;
+            key.style = `background-color:${tileColor};border-color:${tileColor}`;
+            
           }, interval * index);
         });
 
         guessedWordCount += 1;
 
         if (currentWord === word) {
-          window.alert("Congratulations!");
+          //window.alert("Congratulations!");
+
         }
 
         if (guessedWords.length === 6) {
