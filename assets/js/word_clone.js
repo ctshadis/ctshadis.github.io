@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then((res) => {
         word = res.word;
-        word = "sassy";
       
       })
       .catch((err) => {
