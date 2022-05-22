@@ -9,6 +9,8 @@
     <script src="assets/js/word_clone.js"></script>
     <script>
       function doCookie() {
+        cookie_name = "cookie";
+        wins_cookie_name = "wins?";
 
 if(document.cookie)
   {index = document.cookie.indexOf(cookie_name);}
@@ -74,7 +76,7 @@ function getwins() {
     //This starts the second function that gets the value in the cookie and assigns it to a variable name.
     
     if(document.cookie) {
-      index = document.cookie.indexOf(cookie_name);
+      index = document.cookie.indexOf(wins_cookie_name);
       if (index != -1) {
       countbegin = (document.cookie.indexOf("?", index) + 2);
       countend = document.cookie.indexOf("+", index);
