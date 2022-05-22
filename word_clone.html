@@ -153,7 +153,8 @@ return ("0 times");
               let numGames = getgames();
               let modText;
               if (numGames !== 0){
-                modText = String(numWins/numGames);
+                modText = String(Math.round(numWins/numGames*100));
+                modText = "Win PCT: " + modText + "%"
               }
               else{
                 modText = "No games yet";
