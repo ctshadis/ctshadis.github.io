@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (currentWord === word) {
           //window.alert("Congratulations!");
-          doCookie();
+          doWinCookie();
           window.alert("Congratulations! Refresh to play again");
 
 
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-function doCookie() {
+function doWinCookie() {
 
   if(document.cookie)
     {index = document.cookie.indexOf(wins_cookie_name);}
