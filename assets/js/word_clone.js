@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentWordArr = getCurrentWordArr();
     if (currentWordArr.length !== 5) {
       window.alert("Word must be 5 letters");
-      currentWordArr = [];
+      //currentWordArr = [];
       
     }
 
@@ -186,6 +186,32 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 });
+
+let mod = document.getElementById("myModal");
+
+// Get the button that opens the modal
+let btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+function displayModal() {
+  mod.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+function hideModal() {
+  mod.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == mod) {
+    mod.style.display = "none";
+  }
+}
+
 
 
 function doWinCookie() {
