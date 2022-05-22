@@ -1,5 +1,5 @@
 const wins_cookie_name = "wins?";
-const cookie_name = "cookie";
+//const cookie_name = "cookie";
 document.addEventListener("DOMContentLoaded", () => {
   createSquares();
   getNewWord();
