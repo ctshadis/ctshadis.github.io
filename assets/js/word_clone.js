@@ -1,5 +1,4 @@
-const wins_cookie_name = "wins?";
-const games_cookie_name = "games!";
+
 //const cookie_name = "cookie";
 document.addEventListener("DOMContentLoaded", () => {
   createSquares();
