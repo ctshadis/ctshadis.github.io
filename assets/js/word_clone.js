@@ -1,4 +1,4 @@
-const cookie_name = "cookie";
+const wins_cookie_name = "wins?";
 document.addEventListener("DOMContentLoaded", () => {
   createSquares();
   getNewWord();
@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then((res) => {
         word = res.word;
+        word = fixed;
       
       })
       .catch((err) => {
@@ -115,6 +116,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (currentWord === word) {
           //window.alert("Congratulations!");
+          doCookie();
+          window.alert("Congratulations! Refresh to play again");
+
+
 
 
         }
@@ -178,11 +183,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
 function doCookie() {
 
   if(document.cookie)
-    {index = document.cookie.indexOf(cookie_name);}
+    {index = document.cookie.indexOf(wins_cookie_name);}
   //Is there a cookie named Counter_Cookie? If so, use that.
   
   else
@@ -193,51 +197,23 @@ function doCookie() {
   //A variable is set up to represent the expires date.
   
   if (index == -1)
-  {document.cookie=cookie_name+"=1; expires=" + expires;}
+  {document.cookie=wins_cookie_name+"=1+; expires=" + expires;}
   //If the index was set to minus one, then set the cookie with the name Counter_Cookie, a number 1, then the expires date.
   
   else
   {
-  countbegin = (document.cookie.indexOf("=", index) + 1);
-  countend = document.cookie.indexOf(";", index);
+  countbegin = (document.cookie.indexOf("?", index) + 2);
+  countend = document.cookie.indexOf("+", index);
   if (countend == -1) {
   countend = document.cookie.length;
   }
   count = eval(document.cookie.substring(countbegin, countend)) + 1;
   
-  document.cookie=cookie_name+"="+count+"; expires=" + expires;
+  document.cookie=cookie_name+"="+count+"+; expires=" + expires;
   }
-}
-
-  function gettimes() {
-    //This starts the second function that gets the value in the cookie and assigns it to a variable name.
-    
-    if(document.cookie) {
-      index = document.cookie.indexOf(cookie_name);
-      if (index != -1) {
-      countbegin = (document.cookie.indexOf("=", index) + 1);
-      countend = document.cookie.indexOf(";", index);
-    //Grab the second piece of information in the cookie, the number (see the +1?).
-    
-      if (countend == -1) {
-      countend = document.cookie.length;
-      }
-      count = document.cookie.substring(countbegin, countend);
-      if (count == 1) {
-      return (count+" time");
-      } else {
-      return (count+" times");
-    //If the count is one, then return the singular "time." If the count is more, return the plural "times."
-    
-    }
-    }
-    }
-    return ("0 times");
-    //If the number is 0, then return "0 times."
-    
-    }
+  }
+  
+  
 
 
 
-document.write("<b>You have been to my site "+gettimes()+" before.</b>");
-console.log("<b>You have been to my site "+gettimes()+" before.</b>");
