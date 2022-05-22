@@ -207,7 +207,7 @@ function doCookie() {
   
   document.cookie=cookie_name+"="+count+"; expires=" + expires;
   }
-  }
+}
 
   function gettimes() {
     //This starts the second function that gets the value in the cookie and assigns it to a variable name.
@@ -239,5 +239,5 @@ function doCookie() {
 
 
 
-
+document.write("<b>You have been to my site "+gettimes()+" before.</b>");
 console.log("<b>You have been to my site "+gettimes()+" before.</b>");
