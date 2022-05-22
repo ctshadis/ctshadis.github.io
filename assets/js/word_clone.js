@@ -1,4 +1,5 @@
 const wins_cookie_name = "wins?";
+const games_cookie_name = "games!";
 //const cookie_name = "cookie";
 document.addEventListener("DOMContentLoaded", () => {
   createSquares();
@@ -118,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentWord === word) {
           //window.alert("Congratulations!");
           doWinCookie();
+          doGamesCookie();
           window.alert("Congratulations! Refresh to play again");
 
 
@@ -126,7 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (guessedWords.length === 6) {
+          doGamesCookie();
           window.alert(`Sorry, you have no more guesses! The word is ${word}.`);
+          
         }
 
         guessedWords.push([]);
@@ -213,6 +217,37 @@ function doWinCookie() {
   document.cookie=wins_cookie_name+"="+count+"+; expires=" + expires;
   }
   }
+
+
+  function doGamesCookie() {
+
+    if(document.cookie)
+      {index = document.cookie.indexOf(games_cookie_name);}
+    //Is there a cookie named Counter_Cookie? If so, use that.
+    
+    else
+      {index = -1;}
+    //If there isn't, set the index to minus one (-1).
+    
+    var expires = "Monday, 04-Apr-2030 05:00:00 GMT"
+    //A variable is set up to represent the expires date.
+    
+    if (index == -1)
+    {document.cookie=games_cookie_name+"=1-; expires=" + expires;}
+    //If the index was set to minus one, then set the cookie with the name Counter_Cookie, a number 1, then the expires date.
+    
+    else
+    {
+    countbegin = (document.cookie.indexOf("!", index) + 2);
+    countend = document.cookie.indexOf("-", index);
+    if (countend == -1) {
+    countend = document.cookie.length;
+    }
+    count = eval(document.cookie.substring(countbegin, countend)) + 1;
+    
+    document.cookie=games_cookie_name+"="+count+"-; expires=" + expires;
+    }
+    }
   
   
 
