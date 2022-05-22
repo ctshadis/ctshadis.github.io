@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then((res) => {
         word = res.word;
-        word = fixed;
+        word = "fixed";
       
       })
       .catch((err) => {
