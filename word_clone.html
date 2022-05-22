@@ -100,7 +100,36 @@ function getwins() {
     //If the number is 0, then return "0 times."
     
     }
+
+    function getgames() {
+    //This starts the second function that gets the value in the cookie and assigns it to a variable name.
+    
+    if(document.cookie) {
+      index = document.cookie.indexOf(games_cookie_name);
+      if (index != -1) {
+      countbegin = (document.cookie.indexOf("!", index) + 2);
+      countend = document.cookie.indexOf("-", index);
+    //Grab the second piece of information in the cookie, the number (see the +1?).
+    
+      if (countend == -1) {
+      countend = document.cookie.length;
+      }
+      count = document.cookie.substring(countbegin, countend);
+      if (count == 1) {
+      return (count+" time");
+      } else {
+      return (count+" times");
+    //If the count is one, then return the singular "time." If the count is more, return the plural "times."
+    
+    }
+    }
+    }
+    return ("0 times");
+    //If the number is 0, then return "0 times."
+    
+    }
     console.log("<b>You have won "+getwins()+" before.</b>");
+    console.log("<b>You have played "+getgames()+" before.</b>");
     </script>
 
     <link rel="stylesheet" href="assets/css/word_clone_styles.css" />
