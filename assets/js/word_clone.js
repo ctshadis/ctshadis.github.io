@@ -1,4 +1,5 @@
 const wins_cookie_name = "wins?";
+const cookie_name = "cookie";
 document.addEventListener("DOMContentLoaded", () => {
   createSquares();
   getNewWord();
@@ -209,7 +210,7 @@ function doCookie() {
   }
   count = eval(document.cookie.substring(countbegin, countend)) + 1;
   
-  document.cookie=cookie_name+"="+count+"+; expires=" + expires;
+  document.cookie=wins_cookie_name+"="+count+"+; expires=" + expires;
   }
   }
   
