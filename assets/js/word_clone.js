@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function getNewWord() {
     
     fetch(
-      `https://wordsapiv1.p.rapidapi.com/words/?random=true&lettersMin=5&lettersMax=5&zipf>6.2`,
+      `https://wordsapiv1.p.rapidapi.com/words/?random=true&lettersMin=5&lettersMax=5&frequencyMin=5&frequencyMax=7&letterPattern=^[A-Za-z]{5}$`,
       {
         method: "GET",
         headers: {
