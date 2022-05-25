@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-        if (guessedWords.length === 6 && current word !== word) {
+        if (guessedWords.length === 6 && currentWord !== word) {
           doGamesCookie();
           window.alert(`Sorry, you have no more guesses! The word is ${word}.`);
           
