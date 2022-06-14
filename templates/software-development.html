@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Python</title>
+		<title>Software Development</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -44,13 +44,13 @@
                 padding: 0 18px;
                 max-height: 0;
                 background-color: inherit;
+
                 
                 overflow: hidden;
                 transition: max-height 0.25s ease-in;
                 transition: max-height 0.25s ease-out;
 
             }
-
         </style>
 	</head>
 	<body class="is-preload">
@@ -77,33 +77,676 @@
 					</header>
 
 				<!-- Menu -->
-				<nav id="menu">
-					<h2>Menu</h2>
-					<ul>
-						<li><a href="./index.html">Home</a></li>
-						<li><a href="./data-science.html">Python</a></li>
-						<li><a href="./software-development.html">Software Development</a></li>
-						<li><a href="./math.html">Mathematics</a></li>
-						<li><a href="./skills.html">Skills</a></li>
-						<li><a href="./education.html">Education</a></li>
-						<li><a href="./special-projects.html">Special Projects</a></li>
-					</ul>
-					
-					<div class="contact_menu">
-						<h6>Contact</h6>
-						<p style="font-size:small;margin-bottom: 0%;padding-bottom: 0%;margin-top:0%;padding-top: 0%;">Phone: +1 (774) 200-1286</p>
-						<p style="font-size:small;">Email: ctshadis@gmail.com</p>
-					</div>
-				</nav>
+                <nav id="menu">
+                    <h2>Menu</h2>
+                    <ul>
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="./templates/software-development.html">Software Development</a></li>
+                        <li><a href="./templates/data-science.html">Data Science</a></li>
+                        <li><a href="./templates/math.html">Mathematics</a></li>
+                        <li><a href="./templates/skills.html">Skills</a></li>
+                        <li><a href="./templates/education.html">Education</a></li>
+                        <li><a href="./templates/special-projects.html">Special Projects</a></li>
+                    </ul>
+                    
+                    <div class="contact_menu">
+                        <h6>Contact</h6>
+                        <p style="font-size:small;margin-bottom: 0%;padding-bottom: 0%;margin-top:0%;padding-top: 0%;">Phone: +1 (774) 200-1286</p>
+                        <p style="font-size:small;">Email: ctshadis@gmail.com</p>
+                    </div>
+                </nav>
 
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<h1>Python</h1>
-
+							<h1>Software Development</h1>
+							<h2>Languages</h2>
+							<p>I consider myself proficient in the following languages:</p>
+							<ul>
+								<li>Python</li>
+								<li>Java</li>
+								<li>R</li>
+							</ul>
+							<p>I have worked briefly with the following languages and would be able to learn them quickly:</p>
+							<ul>
+								<li>Javascript (including Node.js)</li>
+								<li>C</li>
+								<li>HTML/CSS</li>
+							</ul>
+							<hr>
+							<hr>
+							<h2>Dev Skills</h2>
+							<ul>
+								<li>Object-Oriented Programming</li>
+								<li>Git and GitHub/Lab</li>
+								<li>Unix-based CLI (Bash)</li>
+								<li>Scrum, Kanban, Scrumban</li>
+								<li>Data Analysis</li>
+							</ul>
+							<hr>
+							<hr>
+                            <h2>Code Samples</h2>
+							<h3>Java</h3>
 							<hr>
 							
-                            <h3>CS-286 Final Project: Demographics Visualizer</h3>
+							
+							<h4>Implement a Binary Search Tree: CS-242 Data Structures</h4>
+
+                            
+                            <p>I was tasked with writing certain methods for the Binary Search Tree: <br>
+                            size(), height(), contains(), find(), add(), and remove().</p>
+
+                            <button type="button" class="collapsible">size():</button>
+                            <div class="coll-content">
+                                <pre>
+                                    <code>
+    /**
+    Compute the number of nodes in a binary tree
+    @param aNode the reference to the root of a binary tree
+    (which may be an empty tree with a null root)
+    @return the number of elements in the tree with the given root
+    */
+    public int size() {
+        return size (root);
+    }
+
+    private int size(Node <E> aNode) {
+        int count = 0;
+        if (aNode == null) return 0;
+        if (aNode.left != null) {
+            count = count + size(aNode.left);
+        }
+        count++;
+        if (aNode.right != null) {
+            count = count + size(aNode.right);
+        }
+        return count;
+    }
+                                
+                                    </code>
+                                </pre>
+                            </div>
+                            <br>
+
+                            <button type="button" class="collapsible">height():</button>
+                            <div class="coll-content">
+                                <pre>
+                                    <code>
+    /**
+    Compute the height of a binary tree
+    @param aNode the reference to the root of a binary tree
+        (which may be an empty tree with a null root)
+    @return the height of the tree with the given root.  If the
+            tree is null, -1 is returned.
+    */
+
+    public int height() {
+        if (root == null) return -1;
+        return height(root); // REMOVE THIS LINE WHEN YOU ARE DONE
+        // TO BE COMPLETED BY THE STUDENT
+    }
+
+    private int height (Node <E> aNode) {
+        int maxHeight = 0;
+        if (aNode.left == null && aNode.right == null) {
+            maxHeight = 0;
+            return maxHeight;
+        }
+        else{
+            int heightLeft = 0;
+            int heightRight = 0;
+            if (aNode.left != null) 
+                heightLeft = 1 + height (aNode.left);
+            if (aNode.right != null) 
+                heightRight = 1 + height (aNode.right);
+            if(heightLeft >= heightRight) return maxHeight + heightLeft;
+            else return maxHeight + heightRight;
+        }
+        
+    }                               
+                                    
+                                    </code>
+                                </pre>
+                            </div>
+                            <br>
+
+                            <button type="button" class="collapsible">contains():</button>
+                            <div class="coll-content">    
+                                <pre>
+                                    <code>
+    /**
+    Searches for a given element in the binary search tree
+    @param someElement element to be searched
+    @return true - if someElement is found in the tree; 
+                    false otherwise
+
+    Complexity: O(h) - where h is the height of the tree.
+    In the worst case it could be O(n).  But on aveage
+    we can expect a complexity of O(log n)
+    */
+    public boolean contains( E someElement) {
+        Node <E> aNode = root;
+        if (root == null) return false;
+        if (aNode.data.compareTo(someElement) == 0) return true;
+        else {
+            while (aNode.data.compareTo(someElement) != 0) {
+                if(aNode.data.compareTo(someElement) < 0) {
+                    if (aNode.right == null) return false;
+                    else aNode = aNode.right;
+                }
+                else {
+                    if (aNode.left == null) return false;
+                    else aNode = aNode.left;
+                }
+            }
+            return true;
+        }
+    }
+                                    </code>
+                                </pre>
+                            </div>
+                            <br>
+
+                            <button type="button" class="collapsible">find():</button>
+                            <div class="coll-content">
+                                <pre>
+                                    <code>
+    /**
+    Searches for a given element in the binary search tree
+    @param someElement element to be searched
+    @param count keeps track of the number of comparisons
+        for this search
+    @return E - if someElement is found in the tree; null
+                    otherwise
+    // Complexity: O(h) - where h is the height of the tree.
+    // In the worst case it could be O(n).  But on aveage
+    // we can expect a complexity of O(log n)
+    */
+    public E find (E someElement, IntObject count) {
+        if(root == null) return null;
+        Node <E> aNode = root;
+        count.setData(count.getData() + 1);
+        while (aNode.data.compareTo(someElement) != 0) {
+            if(aNode.data.compareTo(someElement) > 0) {
+                
+                if (aNode.left == null) return null;
+                else aNode = aNode.left;
+                
+            }
+            else {
+                if(aNode.right == null) return null;
+                else aNode = aNode.right;
+            }
+            count.setData(count.getData() + 1);
+        }
+        return aNode.data;
+    }
+                                    </code>
+                                </pre>
+                            </div>
+                            <br>
+
+                            <button type="button" class="collapsible">add():</button>
+                            <div class="coll-content">
+                                <pre>
+                                    <code>
+    /**
+    inserts an element into a BST
+    @param someElement element that needs to be inserted
+    @param count keeps track of the number of comparisons
+        done for this insert
+    @return true if the insertion is successful, false otherwise
+
+    Complexity: O(h) - where h is the height of the tree.
+    In the worst case it could be O(n).  But on aveage
+        we can expect a complexity of O(log n)
+    */
+    public boolean add(E someElement) {
+        if (root == null) {
+            root = new Node <E>(someElement);
+            return true;
+        }
+        else {
+            Node <E> aNode = root;
+            if (aNode.data.compareTo(someElement) == 0) return false;
+            while (aNode.data.compareTo(someElement) != 0) { 
+                if (aNode.data.compareTo(someElement) < 0) { 
+                    if (aNode.right == null) {
+                        Node <E> addedNode = new Node <E> (someElement);
+                        aNode.right = addedNode;
+                        return true;
+                    }
+                    else aNode = aNode.right;
+                }
+                else {
+                    if(aNode.left == null) {
+                        Node <E> addedNode = new Node <E> (someElement);
+                        aNode.left = addedNode;
+                        return true;
+                    }
+                    else aNode = aNode.left;
+                }
+            }
+            return false;
+        }
+    } 
+                                    </code>
+                                </pre>
+                            </div>
+                            <br>
+
+                            <button type="button" class="collapsible">remove():</button>
+                            <div class="coll-content">
+                                <pre>
+                                    <code>
+    /**
+    removes an element from a BST
+    @param someElement element that needs to be deleted
+    @return returns true if someElement is found in the tree and is
+        successfully deleted; returns false if someElement is
+        not found in the tree.
+    Complexity: O(h) - where h is the height of the tree.
+    In the worst case it could be O(n).  But on aveage
+        we can expect a complexity of O(log n)
+    */
+
+    public boolean remove(E someElement) {
+        if (root == null) return false; //empty tree
+        Node <E> aNode = root;
+        Node <E> parent = null;  
+        while (aNode.data.compareTo(someElement) != 0) { // The node has a different value than the one we're searching for
+            if(aNode.data.compareTo(someElement) > 0) {
+                if (aNode.left == null) return false; // element not in tree and cannot be removed
+                else { // move to the left subtree
+                    parent = aNode;
+                    aNode = aNode.left;
+                }
+            }
+                
+            if(aNode.data.compareTo(someElement) < 0) {
+                if (aNode.right == null) return false; // element not in tree and cannot be removed
+                else { //move the the right subtree
+                    parent = aNode;
+                    aNode = aNode.right;
+                }
+            }
+        }
+            //Found the node
+            
+            //case 1: the node is a leaf
+            if (aNode.left == null && aNode.right == null) { // leaf
+                if (aNode.data.equals(root.data)) {//leaf is the root
+                    root = null;
+                }
+                else {// leaf is not the root
+                    if (parent.right != null && parent.right.equals(aNode)) {// node is right-child of parent
+                        parent.right = null;
+                    }
+                    else if (parent.left != null && parent.left.equals(aNode)) { // node is left-child
+                        parent.left = null;
+                    }
+                    aNode = null;
+                    
+                }
+                return true;
+            }
+            else if (aNode.left == null && aNode.right != null) {//aNode has only a right child
+                if(aNode.data.equals(root.data)) {// aNode is the root
+                    root = aNode.right;
+                }
+                else {//aNode is not the root
+                    if(parent.right != null && parent.right.equals(aNode)) {// node is the right-child of its parent
+                        parent.right = aNode.right;
+                        aNode = null;
+                    }
+                    else if (parent.left != null && parent.left.equals(aNode)) {// node is the left-child of its parent
+                        parent.left = aNode.right;
+                        aNode = null;
+                    }
+                        
+                }
+                return true;
+            }
+            else if (aNode.left != null && aNode.right == null) { // node has only a left child
+                if(aNode.data.equals(root.data)) {//node is the root
+                    root = aNode.left;
+                }
+                else {
+                    if(parent.right != null && parent.right.equals(aNode)) {//node is the right-child of its parent
+                        parent.right = aNode.left;
+                        aNode = null;
+                    }
+                    else if (parent.left != null && parent.left.equals(aNode)) {
+                        parent.left = aNode.left;
+                        aNode = null;
+                    }
+                }
+                return true;
+            }
+            else if (aNode.left != null && aNode.right != null) {
+                Node <E> temp = aNode.right;
+                if(parent == null) {//aNode is the root
+                    aNode.data = delete(temp.getLeftMostData());
+                    return true;
+                }
+                else if(parent.right != null && parent.right.equals(aNode)) {
+                    aNode.data = delete(temp.getLeftMostData());
+
+                    return true;
+                }
+                else if(parent.left != null && parent.left.equals(aNode)) {
+                    aNode.data = delete(temp.getLeftMostData());
+
+                    return true;
+                }
+                else return false;
+                
+            }
+            else return false;
+        
+    }
+                                    </code>
+                                </pre>
+                            </div>
+                            <br>
+
+                            <h6>Project Details</h6>
+                            <ul>
+                                <li>Recursion</li>
+                                <li>Binary Search Trees</li>
+                                <li>Conditionals, iteration</li>
+                                
+                            </ul>
+
+
+
+							<hr>
+							<h4>Implement a Dequeue: CS-242 Data Structures</h4>
+                            
+                            <p>
+                                I was provided an abstraction of a student object and was tasked to implement a dequeue <br>
+                                using a circular array. I was provided a JUnit test suite.
+                            </p>
+                            <button type="button" class="collapsible">Dequeue.java</button>
+                            <div class="coll-content">
+                                <pre>
+                                    <code>
+    import java.util.Iterator;
+    import java.util.NoSuchElementException;
+
+    /*
+        * The Dequeue is an implementation of Queue that allows for insertions and deletions from both ends
+        * @author Christian Shadis
+        * @Version 1.2
+        * 
+        */
+    public class Dequeue<E> extends java.lang.Object {
+        private int front, rear;
+        E[] elements;
+        private static final int INITIAL_CAPACITY = 5;
+
+        /*
+            * Creates an empty Dequeue Running time O(1)
+            */
+        @SuppressWarnings("unchecked")
+        public Dequeue() {
+            elements = (E[]) new Object[INITIAL_CAPACITY];
+            front = 0;
+            rear = -1;
+        }
+
+        /*
+            * Creates a larger array containing the same elements in the same order
+            * 
+            * @post: elements is a larger array and front and rear are reset
+            * 
+            * Running time O(n)
+            */
+        @SuppressWarnings("unchecked")
+        private void reallocate() {
+            int newSize = elements.length + 2;
+            E[] temp = (E[]) new Object[newSize];
+            int i = front;
+            for (int j = 0; j < elements.length; j++) {
+                temp[j] = elements[i % elements.length];
+                i++;
+            }
+            front = 0;
+            rear = elements.length - 2;
+            elements = temp;
+
+        }
+
+        /*
+            * Adds an item to the front of the queue
+            * 
+            * @param anEntry is the item to add to the beginning of the dequeue
+            * 
+            * @return true 
+            * Running time O(1) NOT counting time for the reallocate method
+            */
+        public boolean addFront(E anEntry) {
+            if ((rear + 2) % elements.length == front)
+                reallocate();
+            if (size() == 0) {
+                elements[front] = anEntry;
+                rear++;
+            } else {
+                if (front <= 0)
+                    front = elements.length - 1 - front; // moves front to the last element in the array
+                else
+                    front--;
+                elements[front] = anEntry;
+            }
+            return true;
+        }
+
+        /*
+            * Adds an item to the rear of the queue
+            * 
+            * @param anEntry is the item to add to the beginning of the dequeue
+            * 
+            * @return true 
+            * Running time O(1) NOT counting time for the reallocate method
+            */
+        public boolean addRear(E anEntry) {
+            if ((rear + 2) % elements.length == front)
+                reallocate();
+            rear++;
+            elements[rear] = anEntry;
+            return true;
+        }
+
+        /*
+            * @pre: The dequeue is not empty
+            * 
+            * @post: the front item on the dequeue has been removed and the queue has one
+            * fewer element 
+            * Removes and returns the element in the front of the dequeue
+            * 
+            * @throws NoSuchElementException if the dequeue is empty
+            * 
+            * @return the element that was in the front position of the dequeue
+            */
+        public E removeFront() {
+            if (size() == 0)
+                throw new NoSuchElementException();
+            else {
+                E result = elements[front];
+                front++;
+                return result;
+            }
+        }
+
+        /*
+            * @pre: the dequeue is not empty
+            * 
+            * @post: the rear item on the queue has been removed and the dequeue is one
+            * element shorter Removes and returns the rear element in the dequeue
+            * 
+            * @throws NoSuchElementException if the dequeue is empty
+            * 
+            * @return the element that was in the rear position of the dequeue 
+            * Running time O(n) since it calls size()
+            */
+        public E removeRear() {
+            if (size() == 0)
+                throw new NoSuchElementException();
+            else {
+                E result = elements[rear];
+                if (rear <= 0)
+                    front = elements.length - 1 - rear; // moves rear to the last element in the array
+                else
+                    rear--;
+                return result;
+            }
+        }
+
+        /*
+            * Returns the object at the front of the dequeue without removal 
+            * @post: dequeue unchanged
+            * 
+            * @return the object at the front of the dequeue
+            * 
+            * @throws NoSuchElementException if the dequeue is empty 
+            * Running time O(n) since it calls size()
+            */
+        public E peekFront() {
+            if (size() == 0)
+                throw new NoSuchElementException();
+            else
+                return elements[front];
+        }
+
+        /*
+            * Returns the object at the rear of the dequeue without removal 
+            * post: dequeue unchanged
+            * 
+            * @return the object at the rear of the dequeue
+            * 
+            * @throws NoSuchElementException if the dequeue is empty 
+            * Running time O(n) since it calls size()
+            */
+        public E peekRear() {
+            if (size() == 0)
+                throw new NoSuchElementException();
+
+            else
+                return elements[rear];
+        }
+
+        /*
+            * Checks if there are any elements in the dequeue 
+            * @post: dequeue unchanged
+            * 
+            * @return whether it is empty 
+            * Running time O(n) since it calls size().
+            */
+        public boolean empty() {
+            return (size() == 0);
+        }
+
+        /*
+            * Checks the size of the dequeue
+            * 
+            * @pre: none
+            * 
+            * @post: dequeue unchanged
+            * 
+            * @return number of elements in the dequeue 
+            * Running time O(n)
+            */
+        public int size() {
+            if (rear == front - 1 || (rear == elements.length && front == 0))
+                return 0;
+            else if (rear >= front)
+                return (rear - front + 1);
+            else if (front > rear) {
+                if (rear < 0)
+                    return 0;
+                else {
+                    int counter = 0;
+                    for (int j = front; j < elements.length; j++) {
+                        counter++;
+                    }
+                    for (int j = 0; j <= rear; j++) {
+                        counter++;
+                    }
+                    return counter;
+                }
+            } else
+                return 0;
+        }
+
+    /*
+        * Returns an Iterator object
+        */
+        public java.util.Iterator<E> iterator() {
+            return new myIterator();
+        }
+
+        private class myIterator implements Iterator<E> {
+            // Data Fields
+            // Index of next element
+            private int index;
+            // Count of elements accessed so far
+            private int count = 0;
+
+            // Methods
+            // Constructor
+            /** Initializes the Iterator object to reference the first dequeue element. */
+            public myIterator() {
+                index = front;
+            }
+
+            /** Returns true if there are more elements in the dequeue to access. */
+            @Override
+            public boolean hasNext() {
+                return count < size();
+            }
+
+            /**
+                * Returns the next element in the dequeue.
+                * 
+                * @pre index references the next element to access.
+                * @post index and count are incremented.
+                * @return The element with subscript index
+                */
+            @Override
+            public E next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                E returnValue = elements[index];
+                index = (index + 1) % elements.length;
+                count++;
+                return returnValue;
+            }
+
+            /** Remove the item accessed by the Iterator object – not implemented. */
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+
+        }
+    }  
+                                    </code>
+                                </pre>
+                            </div>
+                            <br>
+                            <h6>Project Details</h6>
+                            <ul>
+                                <li>Queues, Dequeues</li>
+                                <li>Circular Array</li>
+                                <li>Mod function</li>
+                                
+                            </ul>
+							<hr>
+
+                            <h3>Python</h3>
+
+                            <h5>CS-286 Final Project: Demographics Visualizer</h5>
 
                             
 							<br>
@@ -665,14 +1308,14 @@
 								<li>Pandas</li>
 								<li>Loops, Conditionals</li>
 							</ul>
-							<a type="button" class="button" href="./outputs.html" target="_blank" style="background-color: #ffffff;">See the Outputs</a>
+							<a type="button" class="button" href="./templates/outputs.html" target="_blank" style="background-color: #ffffff;">See the Outputs</a>
                             
 
                                 
 
 							<hr>
                             
-                            <h3>CS-135 Final Project: Command-Line Tax Calculator</h3>
+                            <h5>CS-135 Final Project: Command-Line Tax Calculator</h5>
                             
 
 							<button type="button" class="collapsible">main.py</button>
@@ -882,20 +1525,10 @@
 										
 									</code>
 								</pre>
-							</div>
-							<br>
-							<h6>Project Details</h6>
-							<ul>
-								<li>Interactive text-based user menu</li>
-								<li>Conditional Statements</li>
-								<li>Control Flow</li>
-								<li>Arithmetic Functions</li>
-							</ul>
-
+                            </div>
 
 
 						</div>
-                            
 					</div>
 
 				<!-- Footer -->
@@ -924,22 +1557,6 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
             <script src="assets/js/main.js"></script>
-            <!-- <script>
-                var coll = document.getElementsByClassName("collapsible");
-                var i;
-
-                for (i = 0; i < coll.length; i++) {
-                    coll[i].addEventListener("click", function() {
-                        this.classList.toggle("active");
-                        var content = this.nextElementSibling;
-                        if (content.style.display === "block") {
-                            content.style.display = "none";
-                        } else {
-                            content.style.display = "block";
-                        }
-                    });
-                }
-            </script> -->
             <script>
                 var coll = document.getElementsByClassName("collapsible");
                 var i;
